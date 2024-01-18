@@ -18,3 +18,7 @@
 - npm i
 - npm run build
 - php artisan serve
+
+## Preview Video
+  
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://github.com/zulanggara/laravel-assessment-juke/assets/36662371/4d460e31-80c1-4dd3-a28b-c481a07a3a5e)
