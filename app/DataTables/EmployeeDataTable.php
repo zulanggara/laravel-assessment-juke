@@ -22,14 +22,10 @@ class EmployeeDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            // ->addColumn('action', 'employee.action')
             ->addIndexColumn()
-            // ->editColumn('last_salary', function (Employee $employee) {
-            //     return "Rp. " . number_format($employee->last_salary, 2, ",", ".");
-            // })
-            // ->editColumn('gender', function (Employee $employee) {
-            //     return ($employee->gender == "M" ? "Mele" : ($employee->gender == "F" ? "Femele" : "-"));
-            // })
+            ->addColumn('date_added', function (Employee $employee) {
+                return date('d-m-Y', strtotime($employee->created_at));
+            })
             ->addColumn('action', function (Employee $employee) {
                 return "
                 <a href='" . route('employee.edit', ['id' => $employee->id]) . "' class='btn btn-info btn-icon btn-sm' type='button' ><i class='bi bi-pencil'></i> Edit</a>
@@ -86,18 +82,20 @@ class EmployeeDataTable extends DataTable
                 ->printable(false)
                 ->searchable(false)
                 ->orderable(false),
-            Column::make('first_name')->title('first_name'),
-            Column::make('last_name')->title('last_name'),
-            Column::make('date_of_birth')->title('date_of_birth'),
-            Column::make('phone_number')->title('phone_number'),
-            Column::make('email_address')->title('email_address'),
-            Column::make('province_address')->title('province_address'),
-            Column::make('city_address')->title('city_address'),
-            Column::make('street_address')->title('street_address'),
-            Column::make('zip_code')->title('zip_code'),
-            Column::make('ktp_number')->title('ktp_number'),
-            Column::make('bank_account')->title('bank_account'),
-            Column::make('bank_account_number')->title('bank_account_number'),
+            Column::make('first_name')->title('First Name'),
+            Column::make('last_name')->title('Last Name'),
+            Column::make('date_of_birth')->title('Date of Birth'),
+            Column::make('phone_number')->title('Phone Number'),
+            Column::make('email_address')->title('Email Address'),
+            Column::make('province_address')->title('Province Address'),
+            Column::make('city_address')->title('City Address'),
+            Column::make('street_address')->title('Street Address'),
+            Column::make('zip_code')->title('Zip Code'),
+            Column::make('ktp_number')->title('KTP Number'),
+            Column::make('current_position')->title('Current Position'),
+            Column::make('bank_account')->title('Bank Account'),
+            Column::make('bank_account_number')->title('Bank Account Number'),
+            Column::make('date_added')->title('Date Added'),
             Column::make('created_at')->hidden(),
         ];
     }

@@ -75,6 +75,7 @@ class EmployeeController extends Controller
             'city_address' => $request->city_address,
             'street_address' => $request->street_address,
             'zip_code' => $request->zip_code,
+            'current_position' => $request->current_position,
             'ktp_number' => $request->ktp_number,
             'bank_account' => $request->bank_account,
             'bank_account_number' => $request->bank_account_number,

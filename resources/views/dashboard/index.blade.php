@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="max-width:100% !important">
         <div class="card">
             <div class="card-header">Data Employee</div>
             <div class="card-body">

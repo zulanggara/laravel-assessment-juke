@@ -22,7 +22,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="date_of_birth">Date of Birth <small class="text-danger">*</small></label>
+                        <label for="date_of_birth">Date of Birth </label>
                         <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="Enter Date of Birth.." value="">
                         @if($errors->has('date_of_birth'))
                             <div class="alert alert-danger">{{ $errors->first('date_of_birth') }}</div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Phone Number <small class="text-danger">*</small></label>
-                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter Phone Number.." value="">
+                        <input type="text" class="form-control numberOnly" id="phone_number" name="phone_number" placeholder="Enter Phone Number.." value="">
                         @if($errors->has('phone_number'))
                             <div class="alert alert-danger">{{ $errors->first('phone_number') }}</div>
                         @endif
@@ -43,8 +43,8 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="province_address">Province <small class="text-danger">*</small></label>
-                        <select name="province_address" id="province_address" class="form-control">
+                        <label for="province_address">Province </label>
+                        <select name="province_address" id="province_address" class="form-control" onchange="changeCity(this.value)">
                             <option value="" hidden>Select Province</option>
                             <option value="DKI Jakarta">DKI Jakarta</option>
                             <option value="Jawa Tengah">Jawa Tengah</option>
@@ -55,26 +55,23 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="city_address">City <small class="text-danger">*</small></label>
+                        <label for="city_address">City </label>
                         <select name="city_address" id="city_address" class="form-control">
                             <option value="" hidden>Select City</option>
-                            <option value="DKI Jakarta">DKI Jakarta</option>
-                            <option value="Jawa Tengah">Jawa Tengah</option>
-                            <option value="Jawa Barat">Jawa Barat</option>
                         </select>
                         @if($errors->has('city_address'))
                             <div class="alert alert-danger">{{ $errors->first('city_address') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="street_address">Street<small class="text-danger">*</small></label>
+                        <label for="street_address">Street</label>
                         <input type="text" class="form-control" id="street_address" name="street_address" placeholder="Enter Street.." value="">
                         @if($errors->has('street_address'))
                             <div class="alert alert-danger">{{ $errors->first('street_address') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="zip_code">ZIP Code<small class="text-danger">*</small></label>
+                        <label for="zip_code">ZIP Code</label>
                         <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Enter ZIP Code.." value="">
                         @if($errors->has('zip_code'))
                             <div class="alert alert-danger">{{ $errors->first('zip_code') }}</div>
@@ -82,13 +79,13 @@
                     </div>
                     <div class="form-group">
                         <label for="ktp_number">KTP Number<small class="text-danger">*</small></label>
-                        <input type="text" class="form-control" id="ktp_number" name="ktp_number" placeholder="Enter KTP Number.." value="">
+                        <input type="text" class="form-control numberOnly" id="ktp_number" name="ktp_number" placeholder="Enter KTP Number.." value="">
                         @if($errors->has('ktp_number'))
                             <div class="alert alert-danger">{{ $errors->first('ktp_number') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="current_position">Current Position <small class="text-danger">*</small></label>
+                        <label for="current_position">Current Position </label>
                         <select name="current_position" id="current_position" class="form-control">
                             <option value="" hidden>Select Current Position</option>
                             <option value="Manager">Manager</option>
@@ -99,7 +96,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="bank_account">Bank Account <small class="text-danger">*</small></label>
+                        <label for="bank_account">Bank Account </label>
                         <select name="bank_account" id="bank_account" class="form-control">
                             <option value="" hidden>Select Bank Account</option>
                             <option value="Mandiri">Mandiri</option>
@@ -111,8 +108,8 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="bank_account_number">Bank Account Number<small class="text-danger">*</small></label>
-                        <input type="text" class="form-control" id="bank_account_number" name="bank_account_number" placeholder="Enter Bank Account Number.." value="">
+                        <label for="bank_account_number">Bank Account Number</label>
+                        <input type="text" class="form-control numberOnly" id="bank_account_number" name="bank_account_number" placeholder="Enter Bank Account Number.." value="">
                         @if($errors->has('bank_account_number'))
                             <div class="alert alert-danger">{{ $errors->first('bank_account_number') }}</div>
                         @endif
@@ -124,4 +121,54 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('keyup', function(event) {
+            if (event.target.classList.contains('numberOnly')) {
+                event.target.value = formatNumber(event.target.value);
+            }
+        });
+        function formatNumber(data) {
+            const numericData = data.replace(/[^0-9]/g, '');
+            const formattedData = numericData.replace(/\B(?=(\d{3})+(?!\d))/g, '');
+            return formattedData;
+        }
+
+        function changeCity(data) {
+            html ='';
+            if (data == 'DKI Jakarta') {
+                html = `
+                    <option value="" disabled selected>Select City</option>
+                    <option value="Jakarta Pusat">Jakarta Pusat</option>
+                    <option value="Jakarta Selatan">Jakarta Selatan</option>
+                    <option value="Jakarta Barat">Jakarta Barat</option>
+                    <option value="Jakarta Timur">Jakarta Timur</option>
+                    <option value="Jakarta Utara">Jakarta Utara</option>
+                `;
+            }else if(data == 'Jawa Tengah'){
+                html = `
+                    <option value="" disabled selected>Select City</option>
+                    <option value="Semarang">Semarang</option>
+                    <option value="Surakarta">Surakarta</option>
+                    <option value="Salatiga">Salatiga</option>
+                    <option value="Magelang">Magelang</option>
+                    <option value="Pekalongan">Pekalongan</option>
+                    <option value="Tegal">Tegal</option>
+                    <option value="Wonosobo">Wonosobo</option>
+                `;
+            }else if(data == 'Jawa Barat'){
+                html = `
+                    <option value="" disabled selected>Select City</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Bekasi">Bekasi</option>
+                    <option value="Cirebon">Cirebon</option>
+                    <option value="Depok">Depok</option>
+                    <option value="Sukabumi">Sukabumi</option>
+                    <option value="Tasikmalaya">Tasikmalaya</option>
+                `;
+            }
+            const cityAddressElement = document.getElementById('city_address');
+            cityAddressElement.innerHTML = html;
+
+        }
+    </script>
 @endsection

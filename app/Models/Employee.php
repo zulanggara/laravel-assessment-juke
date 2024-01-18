@@ -21,6 +21,7 @@ class Employee extends Model
         'street_address',
         'zip_code',
         'ktp_number',
+        'current_position',
         'bank_account',
         'bank_account_number',
     ];
