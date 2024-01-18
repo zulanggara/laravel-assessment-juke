@@ -55,7 +55,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee, $id)
     {
         return view('dashboard.edit', [
-            'data_employee' => $employee->where('employee_id', $id)->first(),
+            'data_employee' => $employee->where('id', $id)->first(),
         ]);
     }
 
@@ -65,15 +65,20 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $request->validated();
-        $employee->where('employee_id', $request->employee_id)->update([
-            'email' => $request->email,
+        $employee->where('id', $request->id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'date_of_birth' => $request->date_of_birth,
             'phone_number' => $request->phone_number,
-            'full_name' => $request->full_name,
-            'pob' => $request->pob,
-            'dob' => $request->dob,
-            'gender' => $request->gender,
-            'year_exp' => $request->year_exp,
-            'last_salary' => $request->last_salary,
+            'email_address' => $request->email_address,
+            'province_address' => $request->province_address,
+            'city_address' => $request->city_address,
+            'street_address' => $request->street_address,
+            'zip_code' => $request->zip_code,
+            'ktp_number' => $request->ktp_number,
+            'bank_account' => $request->bank_account,
+            'bank_account_number' => $request->bank_account_number,
+
         ]);
 
         return redirect()->route('employee.index')
@@ -87,7 +92,7 @@ class EmployeeController extends Controller
     {
         DB::beginTransaction();
         try {
-            $employee->where('employee_id', $request->id)->delete();
+            $employee->where('id', $request->id)->delete();
             DB::commit();
             return response()->json(['status' => true], 200);
         } catch (\Exception $e) {
@@ -96,7 +101,7 @@ class EmployeeController extends Controller
         }
         // return redirect()->route('employee.index')
         //     ->with('success', 'Employee deleted!');
-        // $employee->where('employee_id', $id)->delete();
+        // $employee->where('id', $id)->delete();
 
     }
 }

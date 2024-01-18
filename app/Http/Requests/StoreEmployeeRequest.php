@@ -22,13 +22,11 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|unique:employee',
-            'phone_number' => 'required|unique:employee',
-            'full_name' => 'required|string',
-            'dob' => 'required',
-            'pob' => 'required',
-            'year_exp' => 'required',
-            'gender' => 'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'email_address' => 'required|email|unique:employee',
+            'zip_code' => 'required',
         ];
     }
 

@@ -23,13 +23,11 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => "required|email|unique:t_candidate,email,{$this->candidate_id},candidate_id",
-            'phone_number' => "required|unique:t_candidate,phone_number,{$this->candidate_id},candidate_id",
-            'full_name' => 'required|string',
-            'dob' => 'required',
-            'pob' => 'required',
-            'year_exp' => 'required',
-            'gender' => 'required'
+            'email_address' => "required|email|unique:employee,email_address,{$this->id},id",
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'zip_code' => 'required',
         ];
     }
 

@@ -88,23 +88,37 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="current_position">Current Position<small class="text-danger">*</small></label>
-                        <input type="text" class="form-control" id="current_position" name="current_position" placeholder="Enter Current Position.." value="">
+                        <label for="current_position">Current Position <small class="text-danger">*</small></label>
+                        <select name="current_position" id="current_position" class="form-control">
+                            <option value="" hidden>Select Current Position</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Supervisor">Supervisor</option>
+                        </select>
                         @if($errors->has('current_position'))
                             <div class="alert alert-danger">{{ $errors->first('current_position') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="Bank Account">Bank Account <small class="text-danger">*</small></label>
-                        <select name="Bank Account" id="Bank Account" class="form-control">
+                        <label for="bank_account">Bank Account <small class="text-danger">*</small></label>
+                        <select name="bank_account" id="bank_account" class="form-control">
                             <option value="" hidden>Select Bank Account</option>
                             <option value="Mandiri">Mandiri</option>
                             <option value="BCA">BCA</option>
                             <option value="BNI">BNI</option>
                         </select>
-                        @if($errors->has('Bank Account'))
-                            <div class="alert alert-danger">{{ $errors->first('Bank Account') }}</div>
+                        @if($errors->has('bank_account'))
+                            <div class="alert alert-danger">{{ $errors->first('bank_account') }}</div>
                         @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="bank_account_number">Bank Account Number<small class="text-danger">*</small></label>
+                        <input type="text" class="form-control" id="bank_account_number" name="bank_account_number" placeholder="Enter Bank Account Number.." value="">
+                        @if($errors->has('bank_account_number'))
+                            <div class="alert alert-danger">{{ $errors->first('bank_account_number') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
