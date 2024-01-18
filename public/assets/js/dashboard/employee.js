@@ -1,16 +1,5 @@
-// let table;
 
-// $(() => {
-//     table = $('#candidate-table');
-
-//     $('#candidate-table').on('click', '.btn-delete', function () {
-//         let data = table.row($(this).closest('tr')).data();
-
-//         console.table(data);
-//     })
-// })
-
-function delete_candidate(id, full_name)
+function delete_employee(id, full_name)
 {
     Swal.fire({
         title: `Delete ${full_name}?`,
@@ -33,7 +22,7 @@ function delete_candidate(id, full_name)
                         icon: 'success',
                         timer:3000
                     })
-                    $('#candidate-table').DataTable().ajax.reload()
+                    $('#employee-table').DataTable().ajax.reload()
                 }else{
                     Swal.fire({
                         title: `${full_name} not deleted`,
